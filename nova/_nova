@@ -198,6 +198,22 @@ case "$words[1]" in
       '(--type)'--type"[dns type (e.g. A)]" \
     )
     ;;
+  dns-create-public-domain)
+    _command_args=(
+      '(--project)'--project'[Limit access to this domain to users of the specified project.]' \
+    )
+    ;;
+  dns-create-private-domain)
+    _command_args=(
+      '(--availability-zone)'--availability-zone'[Limit access to this domain to instances in the specified availability zone.]' \
+    )
+    ;;
+  dns-list)
+    _command_args=(
+      '(--ip)'--ip'[ip address]' \
+      '(--name)'--name'[DNS name]' \
+    )
+    ;;
   list)
     _command_args=(
       '(--reservation-id)'--reservation-id'[Only return instances that match reservation-id.]' \
@@ -266,12 +282,6 @@ case "$words[1]" in
       '(--force)'--force'[Optional flag to indicate whether to snapshot a volume even if its attached to an instance. (Default=False)]' \
       '(--display-name)'--display-name'[Optional snapshot name. (Default=None)]' \
       '(--display-description)'--display-description'[Optional snapshot description. (Default=None)]' \
-    )
-    ;;
-  )
-    _command_args=(
-      '()''[]' \
-      '()''[]' \
     )
     ;;
   esac
