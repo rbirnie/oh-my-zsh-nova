@@ -160,7 +160,17 @@ fi
 
 local -a _command_args
 case "$words[1]" in
-      boot)
+  absolute-limits)
+    _command_args=(
+      '(--reserved)'--reserved"[Include reservations count.]" \
+    )
+    ;;
+  agent-list)
+    _command_args=(
+      '(--hypervisor)'--hypervisor"[type of hypervisor.]" \
+    )
+    ;;
+  boot)
     _command_args=(
       '(--falvor)'--falvor"[Flavor ID (see nova flavor-list).]" \
       '(--image)'--image"[Image ID (see nova image-list).]" \
@@ -176,6 +186,16 @@ case "$words[1]" in
       '(--nic)'--nic'[Create a NIC on the server.]' \
       '(--config-drive)'--config-drive'[Enable config drive]' \
       '(--poll)'--poll'[Blocks while instance builds so progress can be reported.]' \
+    )
+    ;;
+  console-log)
+    _command_args=(
+      '(--length)'--length"[Length in lines to tail.]" \
+    )
+    ;;
+  dns-create)
+    _command_args=(
+      '(--type)'--type"[dns type (e.g. A)]" \
     )
     ;;
   list)
@@ -224,6 +244,34 @@ case "$words[1]" in
     _command_args=(
       '(--start)'--start'[Usage range start date ex 2012-01-20 (default: 4 weeks ago)]' \
       '(--end)'--end'[Usage range end date, ex 2012-01-20 (default: tomorrow)]' \
+    )
+    ;;
+  volume-create)
+    _command_args=(
+      '(--snapshot-id)'--snapshot-id'[Optional snapshot id to create the volume from. (Default=None)]' \
+      '(--image-id)'--image-id'[Optional image id to create the volume from. (Default=None)]' \
+      '(--display-name)'--display-name'[Optional volume name. (Default=None)]' \
+      '(--display-description)'--display-description'[Optional volume description. (Default=None)]' \
+      '(--volume-type)'--volume-type'[Optional volume type. (Default=None)]' \
+      '(--availability-zone)'--availability-zone'[Optional Availability Zone for volume. (Default=None)]' \
+    )
+    ;;
+  volume-list)
+    _command_args=(
+      '(--all-tenants)'--all-tenants'[Display information from all tenants (Admin only).]' \
+    )
+    ;;
+  volume-snapshot-create)
+    _command_args=(
+      '(--force)'--force'[Optional flag to indicate whether to snapshot a volume even if its attached to an instance. (Default=False)]' \
+      '(--display-name)'--display-name'[Optional snapshot name. (Default=None)]' \
+      '(--display-description)'--display-description'[Optional snapshot description. (Default=None)]' \
+    )
+    ;;
+  )
+    _command_args=(
+      '()''[]' \
+      '()''[]' \
     )
     ;;
   esac
